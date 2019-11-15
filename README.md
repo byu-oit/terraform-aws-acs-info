@@ -6,7 +6,7 @@ This module retrieves some VPC and Subnet information and exposes them via outpu
 ## Usage
 ```hcl
 module "vpc" {
-  source = "../"
+  source = "github.com/byu-oit/terraform-aws-existing-vpc"
   vpc_name = "oit-oregon-dev"
 }
 
