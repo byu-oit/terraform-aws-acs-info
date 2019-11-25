@@ -2,3 +2,6 @@
 *.iml
 *.tfstate
 .terraform
+examples/*.tfstate
+examples/.terraform
+examples/*.tfstate.backup
