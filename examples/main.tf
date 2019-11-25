@@ -2,15 +2,34 @@ provider "aws" {
   region = "us-west-2"
 }
 
-module "vpc" {
+module "acs" {
   source = "../"
-  vpc_name = "oit-oregon-dev"
+  env = "dev"
 }
 
 output "vpc_id" {
-  value = module.vpc.vpc_id
+  value = module.acs.vpc_id
 }
 
 output "private_subnets" {
-  value = module.vpc.private_subnet_ids
+  value = module.acs.private_subnet_ids
+}
+
+output "power_builder_role_arn" {
+  value = module.acs.power_builder_role_arn
+}
+
+output "permission_boundary" {
+  value = module.acs.role_permission_boundary_arn
+}
+
+output "route53_zone_name" {
+  value = module.acs.route53_zone_name
+}
+
+output "cert_id" {
+  value = module.acs.certificate_id
+}
+output "cert_arn" {
+  value = module.acs.certificate_arn
 }
