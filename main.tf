@@ -37,12 +37,6 @@ data "aws_ssm_parameter" "subnet_public_b" {
 data "aws_ssm_parameter" "zone_id" {
   name = "/acs/dns/zone-id"
 }
-data "aws_ssm_parameter" "cert_id" {
-  name = "/acs/acm/${data.aws_region.current.name}/zone-cert-id"
-}
-data "aws_ssm_parameter" "cert_arn" {
-  name = "/acs/acm/${data.aws_region.current.name}/zone-cert-arn"
-}
 
 // IAM info
 data "aws_iam_role" "power_user" {
@@ -90,4 +84,9 @@ data "aws_subnet" "public_b" {
 // DNS info
 data "aws_route53_zone" "zone" {
   zone_id = data.aws_ssm_parameter.zone_id.value
+}
+data "aws_acm_certificate" "cert" {
+  // route53 zone includes a "." at the end of the zone name and the certificate can only be retrieved without the "."
+  // TODO the trim function would have been preferred, but is not available with terraform 0.12.16, fix will be available in 0.12.17
+  domain = replace(data.aws_route53_zone.zone.name, "/\\.$/", "")
 }
