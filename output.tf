@@ -5,10 +5,10 @@ output "power_user_role" {
 output "power_builder_role" {
   value = data.aws_iam_role.power_builder
 }
-output "role_permission_boundary" {
+output "role_permissions_boundary" {
   value = data.aws_iam_policy.role_permission_boundary
 }
-output "user_permission_boundary" {
+output "user_permissions_boundary" {
   value = data.aws_iam_policy.user_permission_boundary
 }
 

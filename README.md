@@ -14,8 +14,8 @@ output "vpc_id" {
   value = module.acs.vpc.id
 }
 
-output "permission_boundary" {
-  value = module.acs.role_permission_boundary.arn
+output "permissions_boundary" {
+  value = module.acs.role_permissions_boundary.arn
 }
 ```
 
@@ -32,9 +32,9 @@ output "permission_boundary" {
 | --- | --- |
 | power_user_role | The IAM PowerUser Role [object](https://www.terraform.io/docs/providers/aws/d/iam_role.html#attributes-reference) |
 | power_builder_role | The IAM PowerBuilder Role [object](https://www.terraform.io/docs/providers/aws/d/iam_role.html#attributes-reference) |
-| role_permission_boundary | The IAM role permission boundary policy [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference) |
-| user_permission_boundary | The IAM user permission boundary policy [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference) |
-| vpc | The VPC [object](https://www.terraform.io/docs/providers/aws/d/vpc.html#argument-reference) |
+| role_permissions_boundary | The IAM role permission boundary policy [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference) |
+| user_permissions_boundary | The IAM user permission boundary policy [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference) |
+| vpc | The VPC [object](https://www.terraform.io/docs/providers/aws/d/vpc.html#attributes-reference) |
 | private_subnet_ids | List of subnet_ids for the private subnets in the specified VPC |
 | public_subnet_ids | List of subnet_ids for the public subnets in the specified VPC |
 | data_subnet_ids | List of subnet_ids for the data subnets in the specified VPC |

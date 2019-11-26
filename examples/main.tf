@@ -20,7 +20,7 @@ output "power_builder_role_arn" {
 }
 
 output "permission_boundary" {
-  value = module.acs.role_permission_boundary.arn
+  value = module.acs.role_permissions_boundary.arn
 }
 
 output "route53_zone_name" {
