@@ -11,11 +11,11 @@ module "acs" {
 }
 
 output "vpc_id" {
-  value = module.acs.vpc_id
+  value = module.acs.vpc.id
 }
 
-output "permission_boundary" {
-  value = module.acs.role_permission_boundary_arn
+output "permissions_boundary" {
+  value = module.acs.role_permissions_boundary.arn
 }
 ```
 
@@ -30,20 +30,13 @@ output "permission_boundary" {
 ## Output
 | Name | Description |
 | --- | --- |
-| power_user_role_arn | The ARN of the IAM PowerUser Role |
-| power_user_role_name | The name of the IAM PowerUser Role |
-| power_builder_role_arn | The ARN of the IAM PowerBuilder Role |
-| power_builder_role_name | The name of the IAM PowerBuilder Role |
-| role_permission_boundary_arn | The ARN of the IAM role permission boundary |
-| user_permission_boundary_arn | The ARN of the IAM user permission boundary |
-| vpc_id | The VPC ID |
-| vpc_arn | The ARN of the specified VPC |
-| vpc_name | The name of the specified VPC |
-| vpc_cidr_block | The CIDR block for the specified VPC |
+| power_user_role | The IAM PowerUser Role [object](https://www.terraform.io/docs/providers/aws/d/iam_role.html#attributes-reference) |
+| power_builder_role | The IAM PowerBuilder Role [object](https://www.terraform.io/docs/providers/aws/d/iam_role.html#attributes-reference) |
+| role_permissions_boundary | The IAM role permission boundary policy [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference) |
+| user_permissions_boundary | The IAM user permission boundary policy [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference) |
+| vpc | The VPC [object](https://www.terraform.io/docs/providers/aws/d/vpc.html#attributes-reference) |
 | private_subnet_ids | List of subnet_ids for the private subnets in the specified VPC |
 | public_subnet_ids | List of subnet_ids for the public subnets in the specified VPC |
 | data_subnet_ids | List of subnet_ids for the data subnets in the specified VPC |
-| route53_zone_name | The zone name of the default account Route53 zone |
-| route53_zone_id | The ID of the default account Route53 zone |
-| certificate_arn | the ARN of the default zone's ACM certificate |
-| certificate_id | the ID of the default zone's ACM certificate |
+| route53_zone | The Route53 zone [object](https://www.terraform.io/docs/providers/aws/r/route53_zone.html#attributes-reference) |
+| certificate | The default zone's ACM certificate [object](https://www.terraform.io/docs/providers/aws/d/acm_certificate.html#attributes-reference) |

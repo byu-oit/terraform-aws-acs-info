@@ -8,7 +8,7 @@ module "acs" {
 }
 
 output "vpc_id" {
-  value = module.acs.vpc_id
+  value = module.acs.vpc.id
 }
 
 output "private_subnets" {
@@ -16,20 +16,20 @@ output "private_subnets" {
 }
 
 output "power_builder_role_arn" {
-  value = module.acs.power_builder_role_arn
+  value = module.acs.power_builder_role.arn
 }
 
 output "permission_boundary" {
-  value = module.acs.role_permission_boundary_arn
+  value = module.acs.role_permissions_boundary.arn
 }
 
 output "route53_zone_name" {
-  value = module.acs.route53_zone_name
+  value = module.acs.route53_zone.name
 }
 
 output "cert_id" {
-  value = module.acs.certificate_id
+  value = module.acs.certificate.id
 }
 output "cert_arn" {
-  value = module.acs.certificate_arn
+  value = module.acs.certificate.arn
 }
