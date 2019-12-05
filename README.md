@@ -22,10 +22,7 @@ output "permissions_boundary" {
 ## Input
 | Name | Description | Default Value |
 | --- | --- | --- |
-| `env` | Environment of the AWS Account \[`dev`, `prd`\]|  |
-
-### env
-`env` is the environment of the AWS account -- `dev` for dev accounts and `prd` for production accounts.
+| env | Environment of the AWS Account (e.g. dev, prd)|  |
 
 ## Output
 | Name | Description |
@@ -38,6 +35,9 @@ output "permissions_boundary" {
 | private_subnet_ids | List of subnet_ids for the private subnets in the specified VPC |
 | public_subnet_ids | List of subnet_ids for the public subnets in the specified VPC |
 | data_subnet_ids | List of subnet_ids for the data subnets in the specified VPC |
+| private_subnets | List of private subnet [objects](https://www.terraform.io/docs/providers/aws/r/subnet.html#attributes-reference) in the specified VPC |
+| public_subnets | List of public subnet [objects](https://www.terraform.io/docs/providers/aws/r/subnet.html#attributes-reference) in the specified VPC |
+| data_subnets | List of data subnet [objects](https://www.terraform.io/docs/providers/aws/r/subnet.html#attributes-reference) in the specified VPC |
 | route53_zone | The Route53 zone [object](https://www.terraform.io/docs/providers/aws/r/route53_zone.html#attributes-reference) |
 | certificate | The default zone's ACM certificate [object](https://www.terraform.io/docs/providers/aws/d/acm_certificate.html#attributes-reference) |
 
