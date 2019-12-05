@@ -6,8 +6,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 ## Usage
 ```hcl
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info"
-  version = "1.0.1"
+  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.0.2"
   env = "dev"
 }
 
