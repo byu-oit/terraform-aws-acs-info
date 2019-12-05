@@ -3,8 +3,8 @@ provider "aws" {
 }
 
 module "acs" {
-  source = "../"
-  version = "1.0.1"
+  source = "github.com/byu-oit/terraform-aws-acs-info"
+  ref = "v1.0.2"
   env = "dev"
 }
 
