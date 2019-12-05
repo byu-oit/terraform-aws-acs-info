@@ -7,7 +7,7 @@
 
 variable "env" {
   type = string
-  description = "Account environment [dev, prd]"
+  description = "Account environment (e.g. dev, prd)"
 }
 
 variable "vpc_vpn_to_campus" {
