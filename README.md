@@ -23,6 +23,7 @@ output "permissions_boundary" {
 | Name | Description | Default Value |
 | --- | --- | --- |
 | env | Environment of the AWS Account (e.g. dev, prd)|  |
+| vpc_vpn_to_campus | Retrieve VPC info for the VPC that has VPN access to campus | false |
 
 ## Output
 | Name | Description |
