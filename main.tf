@@ -38,6 +38,11 @@ data "aws_ssm_parameter" "zone_id" {
   name = "/acs/dns/zone-id"
 }
 
+// CodePipeline parameters
+data "aws_ssm_parameter" "github_token" {
+  name = "/acs/git/token"
+}
+
 // IAM info
 data "aws_iam_role" "power_user" {
   name = "PowerUser"

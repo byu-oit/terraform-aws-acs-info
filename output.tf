@@ -42,3 +42,8 @@ output "route53_zone" {
 output "certificate" {
   value = data.aws_acm_certificate.cert
 }
+
+// CodePipeline outputs
+output "github_token" {
+	value = data.aws_ssm_parameter.github_token.value
+}
