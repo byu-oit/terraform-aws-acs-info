@@ -45,5 +45,5 @@ output "certificate" {
 
 // CodePipeline outputs
 output "github_token" {
-	value = data.aws_ssm_parameter.github_token.value
+	value = local.has_github_token ? data.aws_ssm_parameter.github_token[0].value : null
 }
