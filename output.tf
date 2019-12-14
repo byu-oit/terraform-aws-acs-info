@@ -42,3 +42,18 @@ output "route53_zone" {
 output "certificate" {
   value = data.aws_acm_certificate.cert
 }
+
+// RDS Outputs
+output "db_subnet_group_name" {
+  // Terraform doens't have a data accessor for this, so we have to concatenate these strings
+  value = "${local.vpc_name}-db-subnet-group"
+}
+
+// Security Group Outputs
+output "ssh_rdp_security_group" {
+  value = data.aws_security_group.ssh_rdp
+}
+
+output "rds_security_group" {
+  value = data.aws_security_group.rds
+}

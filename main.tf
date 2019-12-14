@@ -90,3 +90,26 @@ data "aws_acm_certificate" "cert" {
   // TODO the trim function would have been preferred, but is not available with terraform 0.12.16, fix will be available in 0.12.17
   domain = replace(data.aws_route53_zone.zone.name, "/\\.$/", "")
 }
+
+// Security Group info
+data "aws_security_group" "ssh_rdp" {
+  filter {
+    name = "vpc-id"
+    values = [data.aws_vpc.vpc.id]
+  }
+  filter {
+    name = "group-name"
+    values = ["*ssh*"]
+  }
+}
+
+data "aws_security_group" "rds" {
+  filter {
+    name = "vpc-id"
+    values = [data.aws_vpc.vpc.id]
+  }
+  filter {
+    name = "group-name"
+    values = ["*rds*"]
+  }
+}

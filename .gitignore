@@ -1,6 +1,7 @@
 .idea
 *.iml
 *.tfstate
+*.tfstate.backup
 .terraform
 examples/*.tfstate
 examples/.terraform
