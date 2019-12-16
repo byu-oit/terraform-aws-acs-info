@@ -5,7 +5,7 @@ data "aws_iam_account_alias" "current" {}
 
 locals {
   vpc_name         = "${var.vpc_vpn_to_campus ? "vpn-" : ""}oit-${data.aws_region.current.name == "us-west-2" ? "oregon-" : "virginia-"}${var.env}"
-  has_github_token = length(regexall("^byu-oit-", data.aws_iam_account_alias.current.account_alias)) > 0
+  has_github_token = length(regexall("^byu-oit-|^ces-", data.aws_iam_account_alias.current.account_alias)) > 0
 }
 
 // IAM parameters
