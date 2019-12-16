@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "acs" {
-  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.0.2"
+  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.0.3"
   env = "dev"
 }
 
@@ -30,6 +30,11 @@ output "route53_zone_name" {
 output "cert_id" {
   value = module.acs.certificate.id
 }
+
 output "cert_arn" {
   value = module.acs.certificate.arn
+}
+
+output "github_token" {
+  value = module.acs.github_token
 }

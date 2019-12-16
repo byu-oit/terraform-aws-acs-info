@@ -6,7 +6,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 ## Usage
 ```hcl
 module "acs" {
-  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.0.2"
+  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.0.3"
   env = "dev"
 }
 
@@ -41,5 +41,7 @@ output "permissions_boundary" {
 | data_subnets | List of data subnet [objects](https://www.terraform.io/docs/providers/aws/r/subnet.html#attributes-reference) in the specified VPC |
 | route53_zone | The Route53 zone [object](https://www.terraform.io/docs/providers/aws/r/route53_zone.html#attributes-reference) |
 | certificate | The default zone's ACM certificate [object](https://www.terraform.io/docs/providers/aws/d/acm_certificate.html#attributes-reference) |
+| github_token | The token to use in CI/CD pipelines to fetch source code from GitHub |
 
 **Note about returning objects**: Because objects are returned (as opposed to just values), autocomplete may not work. Just add on the key to the end out the output accessor. Even though autocomplete won't work, those values will still be correctly returned.
+
