@@ -1,8 +1,11 @@
 
 data "aws_region" "current" {}
 
+data "aws_iam_account_alias" "current" {}
+
 locals {
-  vpc_name = "${var.vpc_vpn_to_campus ? "vpn-" : ""}oit-${data.aws_region.current.name == "us-west-2" ? "oregon-": "virginia-"}${var.env}"
+  vpc_name         = "${var.vpc_vpn_to_campus ? "vpn-" : ""}oit-${data.aws_region.current.name == "us-west-2" ? "oregon-" : "virginia-"}${var.env}"
+  has_github_token = length(regexall("^byu-oit-|^ces-", data.aws_iam_account_alias.current.account_alias)) > 0
 }
 
 // IAM parameters
@@ -38,6 +41,12 @@ data "aws_ssm_parameter" "zone_id" {
   name = "/acs/dns/zone-id"
 }
 
+// CodePipeline parameters
+data "aws_ssm_parameter" "github_token" {
+  count = local.has_github_token ? 1 : 0
+  name  = "/acs/git/token"
+}
+
 // IAM info
 data "aws_iam_role" "power_user" {
   name = "PowerUser"
@@ -58,7 +67,7 @@ data "aws_iam_policy" "user_permission_boundary" {
 // VPC info
 data "aws_vpc" "vpc" {
   tags = {
-    Name: local.vpc_name
+    Name : local.vpc_name
   }
 }
 

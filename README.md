@@ -10,8 +10,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 
 ```hcl
 module "acs" {
-  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.1.0"
-  env = "dev"
+  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.0.4
 }
 
 output "vpc_id" {
@@ -50,5 +49,7 @@ output "permissions_boundary" {
 | db_subnet_group_name | The database subnet group name for RDS in the specified VPC [object](https://www.terraform.io/docs/providers/aws/d/security_group.html) |
 | ssh_rdp_security_group | The security group to enable SSH/RDP access to resources in the specified VPC [object](https://www.terraform.io/docs/providers/aws/d/security_group.html) |
 | rds_security_group | The security group for RDS clusters and instances in the specified VPC |
+| github_token | The token to use in CI/CD pipelines to fetch source code from GitHub |
 
 **Note about returning objects**: Because objects are returned (as opposed to just values), autocomplete may not work. Just add on the key to the end out the output accessor. Even though autocomplete won't work, those values will still be correctly returned.
+
