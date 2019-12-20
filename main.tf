@@ -39,7 +39,7 @@ data "aws_ssm_parameter" "subnet_public_b" {
 }
 data "aws_ssm_parameter" "oracle_security_group" {
   count = local.has_oracle_security_group ? 1 : 0
-  name  = "/acs/vpc/${data.aws_region.current.name}/xinetd-sg-id"
+  name  = "/acs/vpc/${data.aws_region.current.name}/${var.env}-xinetd-sg-id"
 }
 
 
