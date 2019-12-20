@@ -58,7 +58,11 @@ output "rds_security_group" {
   value = data.aws_security_group.rds
 }
 
+output "oracle_security_group" {
+  value = local.has_oracle_security_group ? data.aws_security_group.oracle[0] : null
+}
+
 // CodePipeline outputs
 output "github_token" {
-	value = local.has_github_token ? data.aws_ssm_parameter.github_token[0].value : null
+  value = local.has_github_token ? data.aws_ssm_parameter.github_token[0].value : null
 }

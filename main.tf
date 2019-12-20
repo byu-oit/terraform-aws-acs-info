@@ -4,8 +4,10 @@ data "aws_region" "current" {}
 data "aws_iam_account_alias" "current" {}
 
 locals {
-  vpc_name         = "${var.vpc_vpn_to_campus ? "vpn-" : ""}oit-${data.aws_region.current.name == "us-west-2" ? "oregon-" : "virginia-"}${var.env}"
-  has_github_token = length(regexall("^byu-oit-|^ces-", data.aws_iam_account_alias.current.account_alias)) > 0
+  vpc_name                  = "${var.vpc_vpn_to_campus ? "vpn-" : ""}oit-${data.aws_region.current.name == "us-west-2" ? "oregon-" : "virginia-"}${var.env}"
+  has_oit_resources         = length(regexall("^byu-oit-|^ces-", data.aws_iam_account_alias.current.account_alias)) > 0
+  has_github_token          = local.has_oit_resources
+  has_oracle_security_group = local.has_oit_resources && var.vpc_vpn_to_campus && data.aws_region.current.name == "us-west-2"
 }
 
 // IAM parameters
@@ -35,6 +37,11 @@ data "aws_ssm_parameter" "subnet_public_a" {
 data "aws_ssm_parameter" "subnet_public_b" {
   name = "/acs/vpc/${local.vpc_name}-public-b"
 }
+data "aws_ssm_parameter" "oracle_security_group" {
+  count = local.has_oracle_security_group ? 1 : 0
+  name  = "/acs/vpc/${data.aws_region.current.name}/xinetd-sg-id"
+}
+
 
 // DNS parameters
 data "aws_ssm_parameter" "zone_id" {
@@ -103,22 +110,27 @@ data "aws_acm_certificate" "cert" {
 // Security Group info
 data "aws_security_group" "ssh_rdp" {
   filter {
-    name = "vpc-id"
+    name   = "vpc-id"
     values = [data.aws_vpc.vpc.id]
   }
   filter {
-    name = "group-name"
+    name   = "group-name"
     values = ["*ssh*"]
   }
 }
 
 data "aws_security_group" "rds" {
   filter {
-    name = "vpc-id"
+    name   = "vpc-id"
     values = [data.aws_vpc.vpc.id]
   }
   filter {
-    name = "group-name"
+    name   = "group-name"
     values = ["*rds*"]
   }
+}
+
+data "aws_security_group" "oracle" {
+  count = local.has_oracle_security_group ? 1 : 0
+  id    = data.aws_ssm_parameter.oracle_security_group[0].value
 }
