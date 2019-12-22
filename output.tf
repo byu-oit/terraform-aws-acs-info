@@ -64,8 +64,5 @@ output "oracle_security_group" {
 
 // CodePipeline outputs
 output "github_token" {
-  // We just pull a simple string from acs_parameters. Because there is no data source,
-  // we don't need the protection offered by our count() pattern. In this case, a
-  // lookup() gives us the same protection and is simpler.
-  value = lookup(local.acs_info, "/acs/git/token", null)
+  value = local.github_token # there's no data source, so no need for the null check
 }

@@ -22,6 +22,7 @@ locals {
   public_b_subnet_id           = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-b", null)
   zone_id                      = lookup(local.acs_info, "/acs/dns/zone-id", null)
   oracle_security_group_id     = lookup(local.acs_info, "/acs/vpc/${data.aws_region.current.name}/${var.env}-xinetd-sg-id", null)
+  github_token                 = lookup(local.acs_info, "/acs/git/token", null)
 }
 
 // IAM info
