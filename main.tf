@@ -87,6 +87,17 @@ data "aws_acm_certificate" "cert" {
   // TODO the trim function would have been preferred, but is not available with terraform 0.12.16, fix will be available in 0.12.17
   domain = replace(data.aws_route53_zone.zone[0].name, "/\\.$/", "")
 }
+provider "aws" {
+  alias  = "virginia"
+  region = "us-east-1"
+}
+data "aws_acm_certificate" "virginia" {
+  count    = local.zone_id != null ? 1 : 0
+  provider = aws.virginia
+  // route53 zone includes a "." at the end of the zone name and the certificate can only be retrieved without the "."
+  // TODO the trim function would have been preferred, but is not available with terraform 0.12.16, fix will be available in 0.12.17
+  domain = replace(data.aws_route53_zone.zone[0].name, "/\\.$/", "")
+}
 
 // Security Group info
 data "aws_security_group" "ssh_rdp" {
