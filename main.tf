@@ -1,3 +1,8 @@
+terraform {
+  required_providers {
+    aws = "~> 2.42"
+  }
+}
 
 data "aws_region" "current" {}
 
