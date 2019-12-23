@@ -10,7 +10,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 
 ```hcl
 module "acs" {
-  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.0.5
+  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.1.0
 }
 
 output "vpc_id" {
