@@ -10,7 +10,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 
 ```hcl
 module "acs" {
-  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.1.0
+  source = "git@github.com:byu-oit/terraform-aws-acs-info.git?ref=v1.2.0
 }
 
 output "vpc_id" {
@@ -46,6 +46,7 @@ output "permissions_boundary" {
 | data_subnets | List of data subnet [objects](https://www.terraform.io/docs/providers/aws/r/subnet.html#attributes-reference) in the specified VPC |
 | route53_zone | The Route53 zone [object](https://www.terraform.io/docs/providers/aws/r/route53_zone.html#attributes-reference) |
 | certificate | The default zone's ACM certificate [object](https://www.terraform.io/docs/providers/aws/d/acm_certificate.html#attributes-reference) |
+| certificate_virginia | The default zone's ACM certificate for us-east-1 (needed by CloudFront, API Gateway, etc.) [object](https://www.terraform.io/docs/providers/aws/d/acm_certificate.html#attributes-reference) |
 | db_subnet_group_name | The database subnet group name for RDS in the specified VPC [object](https://www.terraform.io/docs/providers/aws/d/security_group.html) |
 | ssh_rdp_security_group | The security group to enable SSH/RDP access to resources in the specified VPC [object](https://www.terraform.io/docs/providers/aws/d/security_group.html) |
 | rds_security_group | The security group for RDS clusters and instances in the specified VPC [object](https://www.terraform.io/docs/providers/aws/d/security_group.html) |
