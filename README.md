@@ -21,6 +21,15 @@ After defining the module you can then retrieve the information you need using t
 
 ```
 
+### Usage for Non-OIT AWS account:
+```hcl
+module "acs" {
+  source    = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v1.2.1"
+  dept_abbr = "trn"
+  env       = ""
+}
+```
+
 ## Requirements
 * Terraform version 0.12.16 or greater
 
@@ -28,8 +37,20 @@ After defining the module you can then retrieve the information you need using t
 
 | Name | Type | Description | Default Value |
 | --- | --- | --- | --- |
-| env | string | Environment of the AWS Account (e.g. dev, prd)|  |
+| dept_abbr| string | AWS Account department abbreviation (e.g. oit, trn) | oit |
+| env | string | Environment of the AWS Account (e.g. dev, prd)| |
 | vpc_vpn_to_campus | bool | Retrieve VPC info for the VPC that has VPN access to campus | false |
+
+**NOTE:** these input variables are combined to make the VPC name it tries to retrieve from your AWS account.
+```
+(<vpn>-)<dept_abbr>-<region_nickname>(-<env>)
+```
+So for instance to use the `byu-org-trn` account you need to set 
+* `dept_abbr` = `"trn"` (or blank to use default)
+* `env` = `""` (needs to be a blank string)
+* `vpc_vpn_to_campus` = `false` (or blank to use default)
+
+to use the vpc name = `trn-oregon` if in us-west-2 region or `trn-virginia` if in us-east-1
 
 ## Output
 
