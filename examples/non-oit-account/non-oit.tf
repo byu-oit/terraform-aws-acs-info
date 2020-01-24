@@ -32,3 +32,7 @@ output "route53_zone_name" {
 output "github_token" {
   value = module.acs.github_token
 }
+
+output "cert" {
+  value = module.acs.certificate
+}

@@ -89,7 +89,7 @@ data "aws_route53_zone" "zone" {
   zone_id = local.zone_id
 }
 data "aws_acm_certificate" "cert" {
-  count = local.zone_id != null && local.is_oit_account ? 1 : 0
+  count = local.zone_id != null ? 1 : 0
   // route53 zone includes a "." at the end of the zone name and the certificate can only be retrieved without the "."
   // TODO the trim function would have been preferred, but is not available with terraform 0.12.16, fix will be available in 0.12.17
   domain = replace(data.aws_route53_zone.zone[0].name, "/\\.$/", "")
