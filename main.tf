@@ -13,7 +13,7 @@ data "aws_ssm_parameter" "acs_parameters" {
 }
 
 locals {
-  vpc_name = "${var.vpc_vpn_to_campus ? "vpn-" : ""}oit-${data.aws_region.current.name == "us-west-2" ? "oregon-" : "virginia-"}${var.env}"
+  vpc_name = "${var.vpc_vpn_to_campus ? "vpn-" : ""}${var.dept_abbr}-${data.aws_region.current.name == "us-west-2" ? "oregon" : "virginia"}${var.env != ""? join("", ["-", var.env]): ""}"
 
   acs_info = jsondecode(data.aws_ssm_parameter.acs_parameters.value)
 
@@ -97,7 +97,7 @@ provider "aws" {
   region = "us-east-1"
 }
 data "aws_acm_certificate" "virginia" {
-  count    = local.zone_id != null ? 1 : 0
+  count    = local.zone_id != null? 1 : 0
   provider = aws.virginia
   // route53 zone includes a "." at the end of the zone name and the certificate can only be retrieved without the "."
   // TODO the trim function would have been preferred, but is not available with terraform 0.12.16, fix will be available in 0.12.17
@@ -112,7 +112,7 @@ data "aws_security_group" "ssh_rdp" {
   }
   filter {
     name   = "group-name"
-    values = ["*ssh*"]
+    values = ["*ssh_rdp*"]
   }
 }
 
@@ -123,7 +123,7 @@ data "aws_security_group" "rds" {
   }
   filter {
     name   = "group-name"
-    values = ["*rds*"]
+    values = ["*rds_security_group*"]
   }
 }
 
