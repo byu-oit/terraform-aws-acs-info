@@ -43,7 +43,7 @@ output "certificate" {
   value = local.zone_id != null ? data.aws_acm_certificate.cert[0] : null
 }
 output "certificate_virginia" {
-  value = local.zone_id != null && local.is_oit_account ? data.aws_acm_certificate.virginia[0] : null
+  value = local.zone_id != null ? data.aws_acm_certificate.virginia[0] : null
 }
 
 // RDS Outputs

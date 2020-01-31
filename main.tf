@@ -28,8 +28,6 @@ locals {
   zone_id                      = lookup(local.acs_info, "/acs/dns/zone-id", null)
   oracle_security_group_id     = lookup(local.acs_info, "/acs/vpc/${data.aws_region.current.name}/${var.env}-xinetd-sg-id", null)
   github_token                 = lookup(local.acs_info, "/acs/git/token", null)
-
-  is_oit_account               = var.dept_abbr == "oit"
 }
 
 // IAM info
@@ -99,7 +97,7 @@ provider "aws" {
   region = "us-east-1"
 }
 data "aws_acm_certificate" "virginia" {
-  count    = local.zone_id != null && local.is_oit_account ? 1 : 0
+  count    = local.zone_id != null? 1 : 0
   provider = aws.virginia
   // route53 zone includes a "." at the end of the zone name and the certificate can only be retrieved without the "."
   // TODO the trim function would have been preferred, but is not available with terraform 0.12.16, fix will be available in 0.12.17
@@ -114,7 +112,7 @@ data "aws_security_group" "ssh_rdp" {
   }
   filter {
     name   = "group-name"
-    values = ["*ssh*"]
+    values = ["*ssh_rdp*"]
   }
 }
 
@@ -125,7 +123,7 @@ data "aws_security_group" "rds" {
   }
   filter {
     name   = "group-name"
-    values = ["*rds*"]
+    values = ["*rds_security_group*"]
   }
 }
 
