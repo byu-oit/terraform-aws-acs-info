@@ -10,7 +10,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 
 ```hcl
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v1.2.1"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v1.2.2"
   env    = "dev"
 }
 ```
@@ -24,7 +24,7 @@ After defining the module you can then retrieve the information you need using t
 ### Usage for Non-OIT AWS account:
 ```hcl
 module "acs" {
-  source    = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v1.2.1"
+  source    = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v1.2.2"
   dept_abbr = "trn"
   env       = ""
 }
