@@ -1,11 +1,11 @@
 terraform {
+  required_version = "~> 0.12.17"
   required_providers {
     aws = "~> 2.42"
   }
 }
 
 data "aws_region" "current" {}
-
 data "aws_iam_account_alias" "current" {}
 
 data "aws_ssm_parameter" "acs_parameters" {
@@ -13,7 +13,7 @@ data "aws_ssm_parameter" "acs_parameters" {
 }
 
 locals {
-  vpc_name = "${var.vpc_vpn_to_campus ? "vpn-" : ""}${var.dept_abbr}-${data.aws_region.current.name == "us-west-2" ? "oregon" : "virginia"}${var.env != ""? join("", ["-", var.env]): ""}"
+  vpc_name = var.vpc_vpn_to_campus ? lookup(local.acs_info, "/acs/vpc/vpn-vpc-name") : lookup(local.acs_info, "/acs/vpc/vpc-name")
 
   acs_info = jsondecode(data.aws_ssm_parameter.acs_parameters.value)
 
@@ -26,7 +26,7 @@ locals {
   public_a_subnet_id           = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-a", null)
   public_b_subnet_id           = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-b", null)
   zone_id                      = lookup(local.acs_info, "/acs/dns/zone-id", null)
-  oracle_security_group_id     = lookup(local.acs_info, "/acs/vpc/${data.aws_region.current.name}/${var.env}-xinetd-sg-id", null)
+  oracle_security_group_id     = lookup(local.acs_info, "/acs/vpc/xinetd-sg-id", null)
   github_token                 = lookup(local.acs_info, "/acs/git/token", null)
 }
 
@@ -89,19 +89,17 @@ data "aws_route53_zone" "zone" {
 data "aws_acm_certificate" "cert" {
   count = local.zone_id != null ? 1 : 0
   // route53 zone includes a "." at the end of the zone name and the certificate can only be retrieved without the "."
-  // TODO the trim function would have been preferred, but is not available with terraform 0.12.16, fix will be available in 0.12.17
-  domain = replace(data.aws_route53_zone.zone[0].name, "/\\.$/", "")
+  domain = trim(data.aws_route53_zone.zone[0].name, ".")
 }
 provider "aws" {
   alias  = "virginia"
   region = "us-east-1"
 }
 data "aws_acm_certificate" "virginia" {
-  count    = local.zone_id != null? 1 : 0
+  count    = local.zone_id != null ? 1 : 0
   provider = aws.virginia
   // route53 zone includes a "." at the end of the zone name and the certificate can only be retrieved without the "."
-  // TODO the trim function would have been preferred, but is not available with terraform 0.12.16, fix will be available in 0.12.17
-  domain = replace(data.aws_route53_zone.zone[0].name, "/\\.$/", "")
+  domain = trim(data.aws_route53_zone.zone[0].name, ".")
 }
 
 // Security Group info
