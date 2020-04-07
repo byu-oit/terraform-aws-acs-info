@@ -57,10 +57,6 @@ output "ssh_rdp_security_group" {
   value = data.aws_security_group.ssh_rdp
 }
 
-output "rds_security_group" {
-  value = data.aws_security_group.rds
-}
-
 output "oracle_security_group" {
   value = local.oracle_security_group_id != null ? data.aws_security_group.oracle[0] : null
 }
