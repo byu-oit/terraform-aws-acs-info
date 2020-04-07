@@ -10,7 +10,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 
 ```hcl
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v2.0.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v2.1.0"
 }
 ```
 After defining the module you can then retrieve the information you need (see available [outputs](#output) below) using the interpolation syntax:
@@ -49,7 +49,6 @@ After defining the module you can then retrieve the information you need (see av
 | certificate_virginia | [object](https://www.terraform.io/docs/providers/aws/d/acm_certificate.html#attributes-reference) | The default zone's ACM certificate for us-east-1 (needed by CloudFront, API Gateway, etc.) object |
 | db_subnet_group_name | [object](https://www.terraform.io/docs/providers/aws/d/security_group.html) | The database subnet group name for RDS in the specified VPC object |
 | ssh_rdp_security_group | [object](https://www.terraform.io/docs/providers/aws/d/security_group.html) | The security group to enable SSH/RDP access to resources in the specified VPC object |
-| rds_security_group | [object](https://www.terraform.io/docs/providers/aws/d/security_group.html) | The security group for RDS clusters and instances in the specified VPC object |
 | oracle_security_group | [object](https://www.terraform.io/docs/providers/aws/d/security_group.html) | The security group to enable Oracle access to resources in the specified VPC object |
 | github_token | string | The token to use in CI/CD pipelines to fetch source code from GitHub (this if only available in certain AWS accounts) |
 
