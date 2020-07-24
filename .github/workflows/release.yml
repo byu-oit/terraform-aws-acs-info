@@ -5,8 +5,8 @@ on:
     branches: [ master ]
 
 jobs:
-  pipeline:
-    name: Pipeline
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Create new GitHub tag
@@ -16,10 +16,9 @@ jobs:
             GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
             strategy: regex
             root: "version"
-            regex_pattern: "^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
+            regex_pattern: "^\d\.\d\.\d$" # Regex for Semver. Example: x.y.z
             tag_prefix: "v"
       - name: Create GitHub release
-          if: github.ref == 'refs/heads/master'
           id: create_release
           uses: actions/create-release@v1
           env:
