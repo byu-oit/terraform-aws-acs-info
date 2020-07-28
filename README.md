@@ -10,7 +10,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 
 ```hcl
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v2.1.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v2.2.0"
 }
 ```
 After defining the module you can then retrieve the information you need (see available [outputs](#output) below) using the interpolation syntax:
@@ -54,3 +54,8 @@ After defining the module you can then retrieve the information you need (see av
 
 **Note about returning objects**: Because objects are returned (as opposed to just values), autocomplete may not work. Just add on the key to the end out the output accessor. Even though autocomplete won't work, those values will still be correctly returned.
 
+## Developing
+
+### Release new version
+
+To release a new version, update the examples in the `examples` folder, the example in this README, and the number in the version file. Pushing to `master` will automatically create a new release and tag in GitHub.
