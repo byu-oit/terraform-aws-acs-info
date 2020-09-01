@@ -5,7 +5,7 @@ on:
     branches: [master]
     types: [opened, reopened, synchronize, edited]
 env:
-  tf_version: "0.12.26" # must match value in examples/ci/main.tf
+  tf_version: "0.13.1" # must match value in examples/ci/main.tf
 
 jobs:
   env:
