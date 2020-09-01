@@ -21,7 +21,7 @@ After defining the module you can then retrieve the information you need (see av
 ```
 
 ## Requirements
-* Terraform version 0.12.17 or greater
+* Terraform version 0.13.0 or greater
 
 ## Input
 
