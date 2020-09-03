@@ -16,13 +16,13 @@ jobs:
           matrix='{
             "env":[
               {
-                "tf_version":"0.13.2", # must match value in examples/ci-13/ci.tf
+                "tf_version":"0.13.2",
                 "tf_working_dir":"./examples/ci-13",
                 "aws_key_name":"byu_oit_terraform_dev_key",
                 "aws_secret_name":"byu_oit_terraform_dev_secret"
               },
               {
-                "tf_version":"0.12.29", # must match value in examples/ci-12/ci.tf
+                "tf_version":"0.12.29",
                 "tf_working_dir":"./examples/ci-12",
                 "aws_key_name":"byu_oit_terraform_dev_key",
                 "aws_secret_name":"byu_oit_terraform_dev_secret"
