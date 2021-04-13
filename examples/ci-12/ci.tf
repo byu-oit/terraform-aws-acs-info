@@ -56,6 +56,9 @@ output "certificate_virginia" {
 output "db_subnet_group_name" {
   value = module.acs.db_subnet_group_name
 }
+output "db_subnet_group" {
+  value = module.acs.db_subnet_group
+}
 output "ssh_rdp_security_group" {
   value = module.acs.ssh_rdp_security_group
 }

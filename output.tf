@@ -48,8 +48,13 @@ output "certificate_virginia" {
 
 // RDS Outputs
 output "db_subnet_group_name" {
-  // Terraform doens't have a data accessor for this, so we have to concatenate these strings
-  value = "${local.vpc_name}-db-subnet-group"
+  // Terraform didn't used to have a data accessor for this, so the best we could do was return the name
+  // Keeping for backwards compatibility
+  value = data.aws_db_subnet_group.db_subnet_group.name
+}
+
+output "db_subnet_group" {
+  value = data.aws_db_subnet_group.db_subnet_group
 }
 
 // Security Group Outputs
