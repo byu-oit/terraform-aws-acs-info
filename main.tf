@@ -102,6 +102,11 @@ data "aws_acm_certificate" "virginia" {
   domain = trim(data.aws_route53_zone.zone[0].name, ".")
 }
 
+// RDS info
+data "aws_db_subnet_group" "db_subnet_group" {
+  name = "${local.vpc_name}-db-subnet-group"
+}
+
 // Security Group info
 data "aws_security_group" "ssh_rdp" {
   filter {
