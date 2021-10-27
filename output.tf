@@ -46,7 +46,7 @@ output "certificate_virginia" {
   value = local.zone_id != null ? data.aws_acm_certificate.virginia[0] : null
 }
 
-// RDS Outputs
+// RDS outputs
 output "db_subnet_group_name" {
   // Terraform didn't used to have a data accessor for this, so the best we could do was return the name
   // Keeping for backwards compatibility
@@ -57,7 +57,13 @@ output "db_subnet_group" {
   value = data.aws_db_subnet_group.db_subnet_group
 }
 
-// Security Group Outputs
+//Elasticache outputs
+output "elasticache_subnet_group_name" {
+  // Terraform doesn't have a data accessor for this, so the best we can do is return the name
+  value = "${local.vpc_name}-elasticache-subnet-group"
+}
+
+// Security Group outputs
 output "ssh_rdp_security_group" {
   value = data.aws_security_group.ssh_rdp
 }
