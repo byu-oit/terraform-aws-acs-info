@@ -63,10 +63,6 @@ output "elasticache_subnet_group_name" {
   value = "${local.vpc_name}-elasticache-subnet-group"
 }
 
-output "db_subnet_group" {
-  value = data.aws_db_subnet_group.db_subnet_group
-}
-
 // Security Group outputs
 output "ssh_rdp_security_group" {
   value = data.aws_security_group.ssh_rdp
