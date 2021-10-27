@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info?ref=v3.2.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info?ref=v3.3.0"
 }
 
 output "vpc_id" {
@@ -36,4 +36,10 @@ output "cert_arn" {
 
 output "github_token" {
   value = module.acs.github_token
+}
+output "humio_dev_token" {
+  value = module.acs.humio_dev_token
+}
+output "humio_prd_token" {
+  value = module.acs.humio_prd_token
 }
