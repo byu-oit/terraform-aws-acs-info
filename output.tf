@@ -72,7 +72,16 @@ output "oracle_security_group" {
   value = local.oracle_security_group_id != null ? data.aws_security_group.oracle[0] : null
 }
 
-// CodePipeline outputs
+// Integration token outputs
 output "github_token" {
   value = local.github_token # there's no data source, so no need for the null check
 }
+
+output "humio_dev_token" {
+  value = local.humio_dev_token # there's no data source, so no need for the null check
+}
+
+output "humio_prd_token" {
+  value = local.humio_prd_token # there's no data source, so no need for the null check
+}
+

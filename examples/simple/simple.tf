@@ -37,3 +37,9 @@ output "cert_arn" {
 output "github_token" {
   value = module.acs.github_token
 }
+output "humio_dev_token" {
+  value = module.acs.humio_dev_token
+}
+output "humio_prd_token" {
+  value = module.acs.humio_prd_token
+}
