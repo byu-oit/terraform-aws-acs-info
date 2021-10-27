@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info?ref=v3.2.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info?ref=v3.3.0"
 }
 
 output "vpc_id" {

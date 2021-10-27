@@ -10,7 +10,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 
 ```hcl
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v3.2.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v3.3.0"
 }
 ```
 
@@ -52,6 +52,7 @@ After defining the module you can then retrieve the information you need (see av
 | certificate_virginia      | [object](https://www.terraform.io/docs/providers/aws/d/acm_certificate.html#attributes-reference)        | The default zone's ACM certificate for us-east-1 (needed by CloudFront, API Gateway, etc.) object                     |
 | db_subnet_group_name      | string                              | **Deprecated** Use `db_subnet_group.name`                                                                             |
 | db_subnet_group           | [object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/db_subnet_group) | The database subnet group for RDS in the specified VPC object                                                         |
+| elasticache_subnet_group_name | string | The name of the subnet group for Elasticache in the specified VPC. |
 | ssh_rdp_security_group    | [object](https://www.terraform.io/docs/providers/aws/d/security_group.html)                              | The security group to enable SSH/RDP access to resources in the specified VPC object                                  |
 | oracle_security_group     | [object](https://www.terraform.io/docs/providers/aws/d/security_group.html)                              | The security group to enable Oracle access to resources in the specified VPC object                                   |
 | github_token              | string                                                                                                   | The token to use in CI/CD pipelines to fetch source code from GitHub (this if only available in certain AWS accounts) |
