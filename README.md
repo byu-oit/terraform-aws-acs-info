@@ -10,7 +10,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 
 ```hcl
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v3.3.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v3.4.0"
 }
 ```
 
