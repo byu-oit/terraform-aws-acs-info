@@ -10,7 +10,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 
 ```hcl
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v3.5.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v4.0.0"
 }
 ```
 
@@ -38,6 +38,7 @@ After defining the module you can then retrieve the information you need (see av
 |-------------------------------| -------------------------------------------------------------------------------------------------------- |-----------------------------------------------------------------------------------------------------------------------|
 | power_user_role               | [object](https://www.terraform.io/docs/providers/aws/d/iam_role.html#attributes-reference)               | The IAM PowerUser Role object                                                                                         |
 | power_builder_role            | [object](https://www.terraform.io/docs/providers/aws/d/iam_role.html#attributes-reference)               | The IAM PowerBuilder Role object                                                                                      |
+| power_builder_policies        | [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference)             | The IAM PowerBuilder Policy objects                                                                                   |
 | role_permissions_boundary     | [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference)             | The IAM role permissions boundary policy object                                                                       |
 | user_permissions_boundary     | [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference)             | The IAM user permissions boundary policy object                                                                       |
 | vpc                           | [object](https://www.terraform.io/docs/providers/aws/d/vpc.html#attributes-reference)                    | The VPC object                                                                                                        |
@@ -55,6 +56,7 @@ After defining the module you can then retrieve the information you need (see av
 | elasticache_subnet_group_name | string | The name of the subnet group for Elasticache in the specified VPC.                                                    |
 | ssh_rdp_security_group        | [object](https://www.terraform.io/docs/providers/aws/d/security_group.html)                              | The security group to enable SSH/RDP access to resources in the specified VPC object                                  |
 | oracle_security_group         | [object](https://www.terraform.io/docs/providers/aws/d/security_group.html)                              | The security group to enable Oracle access to resources in the specified VPC object                                   |
+| github_oidc_provider          | [object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_openid_connect_provider) | The GitHub Actions OIDC provider. This should be used in the trust policy of an IAM Role that GHA will assume during CI/CD. |
 | github_token                  | string                                                                                                   | The token to use in CI/CD pipelines to fetch source code from GitHub (this is only available in certain AWS accounts) |
 | humio_dev_token               | string                                                                                                   | The token to use to ship logs to dev instance of Humio (this is only available in certain AWS accounts)               |
 | humio_prd_token               | string                                                                                                   | The token to use to ship logs to prd instance of Humio (this is only available in certain AWS accounts)               |

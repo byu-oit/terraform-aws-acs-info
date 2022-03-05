@@ -5,12 +5,19 @@ output "power_user_role" {
 output "power_builder_role" {
   value = data.aws_iam_role.power_builder
 }
+output "power_builder_policies" {
+  value = [data.aws_iam_policy.power_builder, data.aws_iam_policy.power]
+}
 output "role_permissions_boundary" {
   value = local.role_permission_boundary_arn != null ? data.aws_iam_policy.role_permission_boundary[0] : null
 }
 output "user_permissions_boundary" {
   value = local.user_permission_boundary_arn != null ? data.aws_iam_policy.user_permission_boundary[0] : null
 }
+output "github_oidc_provider" {
+  value = local.github_oidc_arn != null ? data.aws_iam_openid_connect_provider.github_actions[0] : null
+}
+
 
 // VPC outputs
 output "vpc" {

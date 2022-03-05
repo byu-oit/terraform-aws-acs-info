@@ -1,7 +1,7 @@
 terraform {
-  required_version = ">= 0.12.17"
+  required_version = ">= 1.0.0"
   required_providers {
-    aws = ">= 3.0"
+    aws = ">= 4.2"
   }
 }
 
@@ -27,6 +27,7 @@ locals {
   public_b_subnet_id           = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-b", null)
   zone_id                      = lookup(local.acs_info, "/acs/dns/zone-id", null)
   oracle_security_group_id     = lookup(local.acs_info, "/acs/vpc/xinetd-sg-id", null)
+  github_oidc_arn              = lookup(local.acs_info, "/acs/git/oidc-arn", null)
   github_token                 = lookup(local.acs_info, "/acs/git/token", null)
   humio_dev_token              = lookup(local.acs_info, "/acs/humio/dev/token", null)
   humio_prd_token              = lookup(local.acs_info, "/acs/humio/prd/token", null)
@@ -44,6 +45,12 @@ data "aws_iam_role" "power_builder" {
 data "aws_iam_role" "read_only" {
   name = "ReadOnly"
 }
+data "aws_iam_policy" "power_builder" {
+  name = "PowerBuilderPolicy"
+}
+data "aws_iam_policy" "power" {
+  name = "PowerPolicy"
+}
 data "aws_iam_policy" "role_permission_boundary" {
   count = local.role_permission_boundary_arn != null ? 1 : 0
   arn   = local.role_permission_boundary_arn
@@ -51,6 +58,10 @@ data "aws_iam_policy" "role_permission_boundary" {
 data "aws_iam_policy" "user_permission_boundary" {
   count = local.user_permission_boundary_arn != null ? 1 : 0
   arn   = local.user_permission_boundary_arn
+}
+data "aws_iam_openid_connect_provider" "github_actions" {
+  count = local.github_oidc_arn != null ? 1 : 0
+  arn   = local.github_oidc_arn
 }
 
 // VPC info

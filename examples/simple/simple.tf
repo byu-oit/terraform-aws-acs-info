@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info?ref=v3.5.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info?ref=v4.0.0"
 }
 
 output "vpc_id" {
@@ -16,6 +16,10 @@ output "private_subnets" {
 
 output "power_builder_role_arn" {
   value = module.acs.power_builder_role.arn
+}
+
+output "power_builder_policy_arns" {
+  value = module.acs.power_builder_policies[*].arn
 }
 
 output "permission_boundary" {
@@ -34,6 +38,9 @@ output "cert_arn" {
   value = module.acs.certificate.arn
 }
 
+output "github_oidc_arn" {
+  value = module.acs.github_oidc_provider.arn
+}
 output "github_token" {
   value = module.acs.github_token
 }
