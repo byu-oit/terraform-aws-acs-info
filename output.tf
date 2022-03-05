@@ -73,6 +73,10 @@ output "oracle_security_group" {
 }
 
 // Integration token outputs
+output "github_oidc_arn" {
+  value = local.github_oidc_arn # there's no data source, so no need for the null check
+}
+
 output "github_token" {
   value = local.github_token # there's no data source, so no need for the null check
 }

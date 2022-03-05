@@ -10,7 +10,7 @@ This module retrieves some basic [ACS](https://github.com/byu-oit/aws-acs) infor
 
 ```hcl
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v3.4.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info.git?ref=v3.5.0"
 }
 ```
 
@@ -55,6 +55,7 @@ After defining the module you can then retrieve the information you need (see av
 | elasticache_subnet_group_name | string | The name of the subnet group for Elasticache in the specified VPC. |
 | ssh_rdp_security_group    | [object](https://www.terraform.io/docs/providers/aws/d/security_group.html)                              | The security group to enable SSH/RDP access to resources in the specified VPC object                                  |
 | oracle_security_group     | [object](https://www.terraform.io/docs/providers/aws/d/security_group.html)                              | The security group to enable Oracle access to resources in the specified VPC object                                   |
+| github_oidc_arn           | string                                                                                                   | The ARN of the GitHub Actions OIDC provider. This should be used in the trust policy of an IAM Role that GHA will assume during CI/CD. |
 | github_token              | string                                                                                                   | The token to use in CI/CD pipelines to fetch source code from GitHub (this is only available in certain AWS accounts) |
 | humio_dev_token           | string                                                                                                   | The token to use to ship logs to dev instance of Humio (this is only available in certain AWS accounts)               |
 | humio_prd_token           | string                                                                                                   | The token to use to ship logs to prd instance of Humio (this is only available in certain AWS accounts)               |

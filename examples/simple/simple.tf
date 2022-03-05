@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info?ref=v3.4.0"
+  source = "github.com/byu-oit/terraform-aws-acs-info?ref=v3.5.0"
 }
 
 output "vpc_id" {
@@ -34,6 +34,9 @@ output "cert_arn" {
   value = module.acs.certificate.arn
 }
 
+output "github_oidc_arn" {
+  value = module.acs.github_oidc_arn
+}
 output "github_token" {
   value = module.acs.github_token
 }

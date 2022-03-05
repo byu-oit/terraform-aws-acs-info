@@ -68,6 +68,9 @@ output "ssh_rdp_security_group" {
 output "oracle_security_group" {
   value = module.acs.oracle_security_group
 }
+output "github_oidc_arn" {
+  value = module.acs.github_oidc_arn
+}
 output "github_token" {
   value = module.acs.github_token
 }
