@@ -77,3 +77,9 @@ output "humio_dev_token" {
 output "humio_prd_token" {
   value = module.acs.humio_prd_token
 }
+output "humio_dev_endpoint" {
+  value = module.acs.humio_dev_endpoint
+}
+output "humio_prd_endpoint" {
+  value = module.acs.humio_prd_endpoint
+}
