@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "acs" {
-  source = "github.com/byu-oit/terraform-aws-acs-info?ref=v3.4.1"
+  source = "github.com/byu-oit/terraform-aws-acs-info?ref=v3.5.0"
 }
 
 output "vpc_id" {
@@ -42,4 +42,10 @@ output "humio_dev_token" {
 }
 output "humio_prd_token" {
   value = module.acs.humio_prd_token
+}
+output "humio_dev_endpoint" {
+  value = module.acs.humio_dev_endpoint
+}
+output "humio_prd_endpoint" {
+  value = module.acs.humio_prd_endpoint
 }

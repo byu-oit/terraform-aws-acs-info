@@ -85,3 +85,11 @@ output "humio_prd_token" {
   value = local.humio_prd_token # there's no data source, so no need for the null check
 }
 
+output "humio_dev_endpoint" {
+  value = local.humio_dev_endpoint # there's no data source, so no need for the null check
+}
+
+output "humio_prd_endpoint" {
+  value = local.humio_prd_endpoint # there's no data source, so no need for the null check
+}
+

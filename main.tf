@@ -30,6 +30,8 @@ locals {
   github_token                 = lookup(local.acs_info, "/acs/git/token", null)
   humio_dev_token              = lookup(local.acs_info, "/acs/humio/dev/token", null)
   humio_prd_token              = lookup(local.acs_info, "/acs/humio/prd/token", null)
+  humio_dev_endpoint           = lookup(local.acs_info, "/acs/humio/dev/endpoint", null)
+  humio_prd_endpoint           = lookup(local.acs_info, "/acs/humio/prd/endpoint", null)
 }
 
 // IAM info
