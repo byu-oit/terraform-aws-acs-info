@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
     types: [opened, reopened, synchronize, edited]
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up DEV Environment Variables
-        if: github.base_ref == 'master'
+        if: github.base_ref == 'main'
         run: |
           matrix='{
             "env":[
