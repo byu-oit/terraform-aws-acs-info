@@ -24,7 +24,8 @@ After defining the module you can then retrieve the information you need (see av
 
 ## Requirements
 
-* Terraform version 0.12.17 or greater
+* Terraform version 1.0.0 or greater
+* AWS Provider version 4.2 or greater
 
 ## Input
 
