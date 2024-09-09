@@ -96,6 +96,26 @@ output "oracle_security_group" {
   value     = module.acs.oracle_security_group
   sensitive = true
 }
+output "alation_security_group" {
+  value     = module.acs.alation_security_group
+  sensitive = true
+}
+output "dremio_security_group" {
+  value     = module.acs.dremio_security_group
+  sensitive = true
+}
+output "globalprotect_security_group" {
+  value     = module.acs.globalprotect_security_group
+  sensitive = true
+}
+output "informatica_security_group" {
+  value     = module.acs.informatica_security_group
+  sensitive = true
+}
+output "tyk_security_group" {
+  value     = module.acs.tyk_security_group
+  sensitive = true
+}
 output "github_oidc_provider" {
   value     = module.acs.github_oidc_provider
   sensitive = true

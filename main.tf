@@ -13,26 +13,32 @@ data "aws_ssm_parameter" "acs_parameters" {
 }
 
 locals {
-  vpc_name = var.vpc_vpn_to_campus ? lookup(local.acs_info, "/acs/vpc/vpn-vpc-name") : lookup(local.acs_info, "/acs/vpc/vpc-name")
+  vpc_name  = var.vpc_vpn_to_campus ? lookup(local.acs_info, "/acs/vpc/vpn-vpc-name") : lookup(local.acs_info, "/acs/vpc/vpc-name")
+  sg_suffix = var.vpc_vpn_to_campus ? "_vpn_sg" : "_sg"
 
   acs_info = jsondecode(data.aws_ssm_parameter.acs_parameters.value)
 
-  role_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamRolePermissionBoundary", null)
-  user_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamUserPermissionBoundary", null)
-  private_a_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-a", null)
-  private_b_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-b", null)
-  data_a_subnet_id             = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-data-a", null)
-  data_b_subnet_id             = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-data-b", null)
-  public_a_subnet_id           = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-a", null)
-  public_b_subnet_id           = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-b", null)
-  zone_id                      = lookup(local.acs_info, "/acs/dns/zone-id", null)
-  oracle_security_group_id     = lookup(local.acs_info, "/acs/vpc/xinetd-sg-id", null)
-  github_oidc_arn              = lookup(local.acs_info, "/acs/git/oidc-arn", null)
-  github_token                 = lookup(local.acs_info, "/acs/git/token", null)
-  humio_dev_token              = lookup(local.acs_info, "/acs/humio/dev/token", null)
-  humio_prd_token              = lookup(local.acs_info, "/acs/humio/prd/token", null)
-  humio_dev_endpoint           = lookup(local.acs_info, "/acs/humio/dev/endpoint", null)
-  humio_prd_endpoint           = lookup(local.acs_info, "/acs/humio/prd/endpoint", null)
+  role_permission_boundary_arn    = lookup(local.acs_info, "/acs/iam/iamRolePermissionBoundary", null)
+  user_permission_boundary_arn    = lookup(local.acs_info, "/acs/iam/iamUserPermissionBoundary", null)
+  private_a_subnet_id             = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-a", null)
+  private_b_subnet_id             = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-b", null)
+  data_a_subnet_id                = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-data-a", null)
+  data_b_subnet_id                = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-data-b", null)
+  public_a_subnet_id              = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-a", null)
+  public_b_subnet_id              = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-b", null)
+  zone_id                         = lookup(local.acs_info, "/acs/dns/zone-id", null)
+  oracle_security_group_id        = lookup(local.acs_info, "/acs/vpc/xinetd-sg-id", null)
+  alation_security_group_id       = lookup(local.acs_info, "/acs/vpc/alation${local.sg_suffix}", null)
+  dremio_security_group_id        = lookup(local.acs_info, "/acs/vpc/dremio${local.sg_suffix}", null)
+  globalprotect_security_group_id = lookup(local.acs_info, "/acs/vpc/globalprotect${local.sg_suffix}", null)
+  informatica_security_group_id   = lookup(local.acs_info, "/acs/vpc/informatica${local.sg_suffix}", null)
+  tyk_security_group_id           = lookup(local.acs_info, "/acs/vpc/ty${local.sg_suffix}", null)
+  github_oidc_arn                 = lookup(local.acs_info, "/acs/git/oidc-arn", null)
+  github_token                    = lookup(local.acs_info, "/acs/git/token", null)
+  humio_dev_token                 = lookup(local.acs_info, "/acs/humio/dev/token", null)
+  humio_prd_token                 = lookup(local.acs_info, "/acs/humio/prd/token", null)
+  humio_dev_endpoint              = lookup(local.acs_info, "/acs/humio/dev/endpoint", null)
+  humio_prd_endpoint              = lookup(local.acs_info, "/acs/humio/prd/endpoint", null)
 }
 
 // IAM info
@@ -137,4 +143,29 @@ data "aws_security_group" "ssh_rdp" {
 data "aws_security_group" "oracle" {
   count = local.oracle_security_group_id != null ? 1 : 0
   id    = local.oracle_security_group_id
+}
+
+data "aws_security_group" "alation" {
+  count = local.alation_security_group_id != null ? 1 : 0
+  id    = local.alation_security_group_id
+}
+
+data "aws_security_group" "dremio" {
+  count = local.dremio_security_group_id != null ? 1 : 0
+  id    = local.dremio_security_group_id
+}
+
+data "aws_security_group" "globalprotect" {
+  count = local.globalprotect_security_group_id != null ? 1 : 0
+  id    = local.globalprotect_security_group_id
+}
+
+data "aws_security_group" "informatica" {
+  count = local.informatica_security_group_id != null ? 1 : 0
+  id    = local.informatica_security_group_id
+}
+
+data "aws_security_group" "tyk" {
+  count = local.tyk_security_group_id != null ? 1 : 0
+  id    = local.tyk_security_group_id
 }
