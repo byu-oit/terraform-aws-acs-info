@@ -79,6 +79,26 @@ output "oracle_security_group" {
   value = local.oracle_security_group_id != null ? data.aws_security_group.oracle[0] : null
 }
 
+output "alation_security_group" {
+  value = local.alation_security_group_id != null ? data.aws_security_group.alation[0] : null
+}
+
+output "dremio_security_group" {
+  value = local.dremio_security_group_id != null ? data.aws_security_group.dremio[0] : null
+}
+
+output "globalprotect_security_group" {
+  value = local.globalprotect_security_group_id != null ? data.aws_security_group.globalprotect[0] : null
+}
+
+output "informatica_security_group" {
+  value = local.informatica_security_group_id != null ? data.aws_security_group.informatica[0] : null
+}
+
+output "tyk_security_group" {
+  value = local.tyk_security_group_id != null ? data.aws_security_group.tyk[0] : null
+}
+
 // Integration token outputs
 output "github_token" {
   value = local.github_token # there's no data source, so no need for the null check
